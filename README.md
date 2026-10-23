@@ -17,10 +17,10 @@ Assessed: PrefectHQ FastMCP source snapshot `4359485`. The SSE controls used MCP
 
 ## Read in order
 
-1. [Case study and observations](CASE-STUDY.md)
+1. [Reading guide and file map](READING-GUIDE.md)
 2. [Architecture and failure flows](FLOW.md)
-3. [Evidence and result accounting](RESULTS.md)
-4. [Объяснение и подготовка к разговору](EXPLAIN-RU.md)
+3. [Case study and observations](CASE-STUDY.md)
+4. [Evidence and result accounting](RESULTS.md)
 5. [Source pins](evidence/source-pins.json) · [offline verification](VERIFY.md)
 
 Independent, AI-assisted, scoped assessment. No confirmed exploitable security vulnerability, CVE, accepted bounty, shipped fix or full-audit claim. Documentation updated 23 October 2026; no new product tests were run for this package.

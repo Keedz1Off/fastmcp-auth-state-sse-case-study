@@ -27,21 +27,21 @@
       "bytes": 3630,
       "sha256": "fd58a1a98cbd91e5d0d417b15705c39d388cd4b7d873387aefd724d28afd22ab"
     },
-    "EXPLAIN-RU.md": {
-      "bytes": 7581,
-      "sha256": "01d5bbcd1bef8929b066caf68f80cf46bef607a6866846501f93fb4a45eb08a0"
+    "READING-GUIDE.md": {
+      "bytes": 6448,
+      "sha256": "31fb5f8446372991e04859bdad1f3584006415facc63295ad21dc07c70da2bd7"
     },
     "FLOW.md": {
       "bytes": 3306,
       "sha256": "27a500176b60bcc7e9cff05240761427999a7164909f2180ffabb7ba058cde92"
     },
     "NOTICE.md": {
-      "bytes": 896,
-      "sha256": "44bfca97a22550462d639f6f60bab3a62078f709784f011fec0a750f4a037c2d"
+      "bytes": 878,
+      "sha256": "e1065d52e7857c31e6e8e7e1257b03095b4a666eb22545f064c8f0adc2d1b6e2"
     },
     "README.md": {
-      "bytes": 2045,
-      "sha256": "cdd5da0d8fc7dd60f14e769b1ceb900de312eabe0c10880e0a8e413806606f35"
+      "bytes": 2008,
+      "sha256": "09f1beb06274aaab02f05772b99d4ad8eb8ad0bddbc3ac3a16be9463d4b7ded9"
     },
     "RESULTS.md": {
       "bytes": 2397,
