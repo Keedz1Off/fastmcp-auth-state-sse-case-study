@@ -1,0 +1,140 @@
+{
+  "pinned_revision": "435948521d40a2d4b9b13b7f76ccfaa6a54a72c6",
+  "platform": "Windows 11, CPython 3.12.10",
+  "upstream_full": {
+    "collected": 9856,
+    "passed": 9744,
+    "failed_in_pytest_summary": 19,
+    "junit_failure_reports": 18,
+    "junit_worker_error_reports": 1,
+    "skipped": 77,
+    "xfail": 16,
+    "exitcode": 1,
+    "pytest_seconds": 216.02
+  },
+  "initial_failure_groups": {
+    "native_import_host_policy_transient": 1,
+    "performance_test_worker_timeout_or_termination": 1,
+    "stdio_bootstrap_exceeds_test_cancellation_budget": 1,
+    "windows_symlink_privilege": 14,
+    "windows_bare_npx_launch": 1,
+    "stdio_recovery_not_reproduced_in_focused_run": 1
+  },
+  "focused_original": {
+    "selected_unique_nodes": 19,
+    "report_counts": {
+      "passed": 3,
+      "failure": 16,
+      "error": 1,
+      "skipped": 0,
+      "xfail": 0
+    },
+    "note": "20 JUnit reports for 19 selected nodes: OpenAPI has a passed-call report plus worker-error report. Original full result remains red."
+  },
+  "performance_no_timeout_plugin": {
+    "counts": {
+      "passed": 1,
+      "failure": 0,
+      "error": 0,
+      "skipped": 0,
+      "xfail": 0
+    },
+    "pytest_seconds": 9.61,
+    "altered_test_configuration": true,
+    "not_an_original_suite_pass": true
+  },
+  "conformance_explicit_windows_cli": {
+    "passed": 164,
+    "expected_failures": 3,
+    "exitcode": 0,
+    "expected_failure_names": [
+      "resources-subscribe",
+      "resources-unsubscribe",
+      "tasks-mrtr-composition"
+    ],
+    "supplemental_adapter_not_upstream_pytest_pass": true
+  },
+  "stdio_normal_reference": {
+    "bootstrap_seconds": [
+      0.6720000000204891,
+      2.3910000000032596,
+      1.422000000020489
+    ],
+    "all_cleanup_ok": true
+  },
+  "static_hooks": [
+    {
+      "stage": "prek-longpaths",
+      "name": "Validate pyproject.toml",
+      "status": "Passed"
+    },
+    {
+      "stage": "prek-longpaths",
+      "name": "prettier",
+      "status": "Passed"
+    },
+    {
+      "stage": "prek-longpaths",
+      "name": "ruff check",
+      "status": "Passed"
+    },
+    {
+      "stage": "prek-longpaths",
+      "name": "ruff format",
+      "status": "Passed"
+    },
+    {
+      "stage": "prek-longpaths",
+      "name": "ty check",
+      "status": "Passed"
+    },
+    {
+      "stage": "prek-longpaths",
+      "name": "loq (file size limits)",
+      "status": "Passed"
+    },
+    {
+      "stage": "prek-longpaths",
+      "name": "gitleaks (secret scanning)",
+      "status": "Passed"
+    },
+    {
+      "stage": "prek-longpaths",
+      "name": "prevent commits to main",
+      "status": "Failed"
+    },
+    {
+      "stage": "prek-longpaths",
+      "name": "codespell",
+      "status": "Passed"
+    }
+  ],
+  "static_final": {
+    "prek_exitcode": 1,
+    "sole_failing_hook": "no-commit-to-branch on main",
+    "loq_hook_non_enforcing": true,
+    "loq_violations": 36,
+    "loq_direct_exitcode": 1,
+    "gitleaks_no_findings": true
+  },
+  "dependency_versions": {
+    "fastmcp": "0.0.1.dev1+4359485",
+    "fastmcp-slim": "0.0.1.dev1+4359485",
+    "mcp": "2.2.0",
+    "prek": "0.4.10",
+    "pytest": "9.1.1",
+    "ruff": "0.15.22",
+    "ty": "0.0.81"
+  },
+  "full_repository_security_audit": false,
+  "real_credentials_supplied": false,
+  "host_security_policies_changed": false,
+  "source_integrity": {
+    "original_tracked_files": 1849,
+    "original_unchanged": true,
+    "tested_clone_unchanged_before_hooks": true,
+    "python_sources_unchanged": true,
+    "clone_eol_only_changes": 35
+  },
+  "note": "Derived/sanitized summary. Original suite remains red; supplemental diagnostics do not replace it."
+}

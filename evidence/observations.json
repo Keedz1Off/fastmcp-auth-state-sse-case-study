@@ -1,0 +1,49 @@
+{
+  "scope": "Selected historical observation summaries; no new runtime validation during packaging.",
+  "observations": [
+    {
+      "id": "OBS-01",
+      "observation": "Separate live OAuth contexts sharing storage did not serialize the first colliding refresh; one reauthorized, later cycles used different pairs.",
+      "classification": "coordination/reliability limitation",
+      "confirmed_security_impact": false,
+      "limit": "Owned provider rotation policy; no exactly-once guarantee established"
+    },
+    {
+      "id": "OBS-02",
+      "observation": "Controlled process exit between token and expiry writes left new token pair with prior expiry; SQLite valid; explicit retry repaired test state.",
+      "classification": "crash-consistency limitation",
+      "confirmed_security_impact": false,
+      "limit": "Historical controlled interruption, not proof of natural exploit or automatic recovery"
+    },
+    {
+      "id": "OBS-03",
+      "observation": "Earlier public-client revocation without client_secret returned invalid_request; confidential-client revocation worked.",
+      "classification": "interoperability defect in tested combination",
+      "confirmed_security_impact": false,
+      "limit": "Distinct from later server-401 SSE error feedback; no auth bypass"
+    },
+    {
+      "id": "OBS-04",
+      "observation": "Inherited Windows DACL granted extra modeled SIDs access contrary to the selected owner-only deployment policy.",
+      "classification": "deployment-policy failure",
+      "confirmed_security_impact": false,
+      "recorded_cases": {
+        "passed": 10,
+        "failed": 2,
+        "skipped": 1
+      },
+      "limit": "No real second-user process, key-access or plaintext disclosure established"
+    },
+    {
+      "id": "OBS-05-SSE-FEEDBACK",
+      "observation": "Server 401; tool body not re-entered; client RPC pending at 2-second bound without RPC deadline; explicit 0.5-second deadline produced MCPError.",
+      "classification": "bounded client/dependency error-propagation defect",
+      "confirmed_security_impact": false,
+      "evidence": [
+        "sse-feedback.json",
+        "liveness.json"
+      ],
+      "limit": "No infinite-wait, application-outage or resource-exhaustion proof"
+    }
+  ]
+}

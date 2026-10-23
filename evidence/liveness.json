@@ -1,0 +1,107 @@
+{
+  "target_revision": "435948521d40a2d4b9b13b7f76ccfaa6a54a72c6",
+  "date": "2026-10-22",
+  "final_cases": 2,
+  "passed": 2,
+  "failed": 0,
+  "scope": "existing synthetic stand, one pending RPC, independent positive liveness controls",
+  "application_wide_unavailability_observed": false,
+  "customer_consumer_application_tested": false,
+  "load_test": false,
+  "resource_exhaustion_test": false,
+  "security_impact": "not established",
+  "runs": [
+    {
+      "label": "sdk230",
+      "sdk": "2.3.0",
+      "python": "3.12.10",
+      "packages": {
+        "fastmcp-slim": "0.0.0",
+        "mcp": "2.3.0",
+        "pytest": "9.1.1",
+        "pytest-asyncio": "1.4.0",
+        "pydantic": "2.14.1",
+        "httpx2": "2.16.0"
+      },
+      "passed": 1,
+      "failed": 0,
+      "duration_seconds": 5.578,
+      "fastmcp_source_files_verified_before_and_after": 269,
+      "sdk_sse_sha256": "1d00b57282c7aaa94918f8e84a93bb08b241806bd172ca54723808588e92b581",
+      "timing_note": "short intervals rounded to zero; not a latency benchmark",
+      "native_network_confinement_not_claimed": true,
+      "record": {
+        "rpc_timeout_seconds": null,
+        "harness_observation_bound_seconds": 2.0,
+        "maximum_simultaneous_failing_operations": 1,
+        "load_test": false,
+        "surface": "owned synthetic MCP server and async test clients",
+        "pending_before_controls": true,
+        "independent_tool_call": {
+          "success": true,
+          "seconds": 0.0
+        },
+        "event_loop_heartbeat": {
+          "completed": true,
+          "seconds": 0.0
+        },
+        "pending_after_controls": true,
+        "pending_at_observation_end": true,
+        "observed_seconds": 2.0,
+        "server_denial_observed": true,
+        "tool_body_counts": {
+          "alice": 1,
+          "bob": 2,
+          "unknown": 0
+        },
+        "listener_closed_after_cleanup": true
+      }
+    },
+    {
+      "label": "sdk220",
+      "sdk": "2.2.0",
+      "python": "3.12.10",
+      "packages": {
+        "fastmcp-slim": "0.0.1.dev1+4359485",
+        "mcp": "2.2.0",
+        "pytest": "9.1.1",
+        "pytest-asyncio": "1.4.0",
+        "pydantic": "2.13.4",
+        "httpx2": "2.12.0"
+      },
+      "passed": 1,
+      "failed": 0,
+      "duration_seconds": 5.516,
+      "fastmcp_source_files_verified_before_and_after": 269,
+      "sdk_sse_sha256": "1d00b57282c7aaa94918f8e84a93bb08b241806bd172ca54723808588e92b581",
+      "timing_note": "short intervals rounded to zero; not a latency benchmark",
+      "native_network_confinement_not_claimed": true,
+      "record": {
+        "rpc_timeout_seconds": null,
+        "harness_observation_bound_seconds": 2.0,
+        "maximum_simultaneous_failing_operations": 1,
+        "load_test": false,
+        "surface": "owned synthetic MCP server and async test clients",
+        "pending_before_controls": true,
+        "independent_tool_call": {
+          "success": true,
+          "seconds": 0.0
+        },
+        "event_loop_heartbeat": {
+          "completed": true,
+          "seconds": 0.0
+        },
+        "pending_after_controls": true,
+        "pending_at_observation_end": true,
+        "observed_seconds": 2.0,
+        "server_denial_observed": true,
+        "tool_body_counts": {
+          "alice": 1,
+          "bob": 2,
+          "unknown": 0
+        },
+        "listener_closed_after_cleanup": true
+      }
+    }
+  ]
+}

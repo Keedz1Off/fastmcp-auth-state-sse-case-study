@@ -1,0 +1,73 @@
+{
+  "project": "PrefectHQ FastMCP",
+  "repository": "https://github.com/PrefectHQ/fastmcp",
+  "revision": "435948521d40a2d4b9b13b7f76ccfaa6a54a72c6",
+  "public_release_mapping": "Not established for the audited development snapshot; 0.0.1.dev1+4359485 is build metadata.",
+  "runtime_sse_dependencies": [
+    {
+      "sdk": "2.3.0",
+      "python": "3.12.10",
+      "packages": {
+        "fastmcp-slim": "0.0.0",
+        "mcp": "2.3.0",
+        "pytest": "9.1.1",
+        "pytest-asyncio": "1.4.0",
+        "pydantic": "2.14.1",
+        "httpx2": "2.16.0"
+      },
+      "source_sha256": {
+        "client/sse.py": "1d00b57282c7aaa94918f8e84a93bb08b241806bd172ca54723808588e92b581",
+        "client/session.py": "17895bd7fc0b98fd78f1ec48be89a3f27dca483f587cb32a4298ad9a6ba347eb"
+      }
+    },
+    {
+      "sdk": "2.2.0",
+      "python": "3.12.10",
+      "packages": {
+        "fastmcp-slim": "0.0.1.dev1+4359485",
+        "mcp": "2.2.0",
+        "pytest": "9.1.1",
+        "pytest-asyncio": "1.4.0",
+        "pydantic": "2.13.4",
+        "httpx2": "2.12.0"
+      },
+      "source_sha256": {
+        "client/sse.py": "1d00b57282c7aaa94918f8e84a93bb08b241806bd172ca54723808588e92b581",
+        "client/session.py": "fb1365c908c0dfc65ad9b59f63d1f5d433153c5da050725f5f98450871fc9a39"
+      }
+    }
+  ],
+  "decisive_source_paths": [
+    "fastmcp_slim/fastmcp/client/client.py::_await_with_session_monitoring",
+    "fastmcp_slim/fastmcp/client/auth/oauth.py::TokenStorageAdapter.set_tokens",
+    "MCP SDK: mcp/client/sse.py::post_writer",
+    "MCP SDK: mcp/client/auth/oauth2.py::OAuthContext"
+  ],
+  "consumer": {
+    "repository": "https://github.com/EpicStaff/EpicStaff",
+    "revision": "7923b1d1732e0f0310b21e9b013ac0b72918f163",
+    "review": "static Git object and locked-wheel review only",
+    "checkout_complete": false,
+    "runtime_tested": false,
+    "dependencies": {
+      "fastmcp": "3.4.7",
+      "fastmcp-slim": "3.4.7",
+      "mcp": "1.30.0"
+    },
+    "wheel_sha256": {
+      "fastmcp_slim-3.4.7-py3-none-any.whl": "6c931a0089705f3f2935428ef9b2bc74ad94140adc64aab84d116d103e694b3a",
+      "mcp-1.30.0-py3-none-any.whl": "666edb5009503e1047c9d60346a756f94b261f05cc2625f23d41c728ffc484d0"
+    },
+    "source_paths": [
+      "src/agent/main.py",
+      "src/agent/app/tools/mcp/client_factory.py",
+      "src/agent/app/tools/mcp/gateway.py",
+      "src/shared/models/tools.py",
+      "src/agent/uv.lock"
+    ],
+    "default_rpc_response_timeout_seconds": 30,
+    "default_initialize_handshake_timeout_seconds": 10,
+    "application_availability_vulnerability_confirmed": false
+  },
+  "release_history": "No first affected/fixed release or general affected-version range verified."
+}

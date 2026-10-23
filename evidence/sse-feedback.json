@@ -1,0 +1,178 @@
+{
+  "target_revision": "435948521d40a2d4b9b13b7f76ccfaa6a54a72c6",
+  "date": "2026-10-22",
+  "final_cases": 4,
+  "passed": 4,
+  "failed": 0,
+  "confirmed": "bounded client POST-error propagation/reliability defect",
+  "exploitable_security_impact": "not established",
+  "load_test_performed": false,
+  "infinite_hang_proven": false,
+  "product_fix_applied": false,
+  "runs": [
+    {
+      "label": "sdk230",
+      "sdk": "2.3.0",
+      "python": "3.12.10",
+      "packages": {
+        "fastmcp-slim": "0.0.0",
+        "mcp": "2.3.0",
+        "pytest": "9.1.1",
+        "pytest-asyncio": "1.4.0",
+        "pydantic": "2.14.1",
+        "httpx2": "2.16.0"
+      },
+      "passed": 2,
+      "failed": 0,
+      "duration_seconds": 8.562,
+      "fastmcp_source_files_verified_before_and_after": 269,
+      "sdk_source_sha256": {
+        "client/sse.py": "1d00b57282c7aaa94918f8e84a93bb08b241806bd172ca54723808588e92b581",
+        "client/session.py": "17895bd7fc0b98fd78f1ec48be89a3f27dca483f587cb32a4298ad9a6ba347eb"
+      },
+      "sse_source_anchors": {
+        "post_writer": 130,
+        "post_writer_catch_and_log": 153
+      },
+      "native_network_confinement_not_claimed": true,
+      "records": [
+        {
+          "rpc_timeout_seconds": null,
+          "observation_limit_seconds": 2.0,
+          "authentication": "fixed synthetic bearer",
+          "load_test": false,
+          "healthy_call_with_selected_timeout_succeeded": true,
+          "elapsed_seconds": 2.0,
+          "completed_before_outer_limit": false,
+          "returned_successfully": false,
+          "exception_type": null,
+          "session_background_still_running": true,
+          "post_writer_error_types": [
+            "ExceptionGroup"
+          ],
+          "responses": [
+            {
+              "method": "POST",
+              "path": "/messages/",
+              "status": 401
+            }
+          ],
+          "server_authentication_denied": true,
+          "selected_tool_body_count": 1,
+          "other_client_works_after_failed_call": true,
+          "other_tool_body_count": 2,
+          "listener_closed_after_cleanup": true
+        },
+        {
+          "rpc_timeout_seconds": 0.5,
+          "observation_limit_seconds": 2.0,
+          "authentication": "fixed synthetic bearer",
+          "load_test": false,
+          "healthy_call_with_selected_timeout_succeeded": true,
+          "elapsed_seconds": 0.515,
+          "completed_before_outer_limit": true,
+          "returned_successfully": false,
+          "exception_type": "MCPError",
+          "session_background_still_running": true,
+          "post_writer_error_types": [
+            "ExceptionGroup"
+          ],
+          "responses": [
+            {
+              "method": "POST",
+              "path": "/messages/",
+              "status": 401
+            }
+          ],
+          "server_authentication_denied": true,
+          "selected_tool_body_count": 1,
+          "other_client_works_after_failed_call": true,
+          "other_tool_body_count": 2,
+          "listener_closed_after_cleanup": true
+        }
+      ]
+    },
+    {
+      "label": "sdk220",
+      "sdk": "2.2.0",
+      "python": "3.12.10",
+      "packages": {
+        "fastmcp-slim": "0.0.1.dev1+4359485",
+        "mcp": "2.2.0",
+        "pytest": "9.1.1",
+        "pytest-asyncio": "1.4.0",
+        "pydantic": "2.13.4",
+        "httpx2": "2.12.0"
+      },
+      "passed": 2,
+      "failed": 0,
+      "duration_seconds": 8.36,
+      "fastmcp_source_files_verified_before_and_after": 269,
+      "sdk_source_sha256": {
+        "client/sse.py": "1d00b57282c7aaa94918f8e84a93bb08b241806bd172ca54723808588e92b581",
+        "client/session.py": "fb1365c908c0dfc65ad9b59f63d1f5d433153c5da050725f5f98450871fc9a39"
+      },
+      "sse_source_anchors": {
+        "post_writer": 130,
+        "post_writer_catch_and_log": 153
+      },
+      "native_network_confinement_not_claimed": true,
+      "records": [
+        {
+          "rpc_timeout_seconds": null,
+          "observation_limit_seconds": 2.0,
+          "authentication": "fixed synthetic bearer",
+          "load_test": false,
+          "healthy_call_with_selected_timeout_succeeded": true,
+          "elapsed_seconds": 2.016,
+          "completed_before_outer_limit": false,
+          "returned_successfully": false,
+          "exception_type": null,
+          "session_background_still_running": true,
+          "post_writer_error_types": [
+            "ExceptionGroup"
+          ],
+          "responses": [
+            {
+              "method": "POST",
+              "path": "/messages/",
+              "status": 401
+            }
+          ],
+          "server_authentication_denied": true,
+          "selected_tool_body_count": 1,
+          "other_client_works_after_failed_call": true,
+          "other_tool_body_count": 2,
+          "listener_closed_after_cleanup": true
+        },
+        {
+          "rpc_timeout_seconds": 0.5,
+          "observation_limit_seconds": 2.0,
+          "authentication": "fixed synthetic bearer",
+          "load_test": false,
+          "healthy_call_with_selected_timeout_succeeded": true,
+          "elapsed_seconds": 0.516,
+          "completed_before_outer_limit": true,
+          "returned_successfully": false,
+          "exception_type": "MCPError",
+          "session_background_still_running": true,
+          "post_writer_error_types": [
+            "ExceptionGroup"
+          ],
+          "responses": [
+            {
+              "method": "POST",
+              "path": "/messages/",
+              "status": 401
+            }
+          ],
+          "server_authentication_denied": true,
+          "selected_tool_body_count": 1,
+          "other_client_works_after_failed_call": true,
+          "other_tool_body_count": 2,
+          "listener_closed_after_cleanup": true
+        }
+      ]
+    }
+  ]
+}
