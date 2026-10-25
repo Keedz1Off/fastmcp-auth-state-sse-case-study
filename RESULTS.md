@@ -1,6 +1,24 @@
 # Results without score inflation
 
-All results below are historical. Preparing this documentation on 23 October 2026 added zero target tests and zero model calls. Cohorts overlap and **must not be summed** as one test suite.
+## PR #3278 verification — 25 October 2026
+
+The same three bounded SSE scenarios were measured on installed mcp 2.3.0, the PR's exact base, and its exact head: nine separate local cases in total.
+
+| Source variant | Fixture controls | Desired behavior criteria |
+| --- | ---: | ---: |
+| Installed mcp 2.3.0 | 3/3 | 0/3 |
+| PR base `a4f4ccd` | 3/3 | 0/3 |
+| PR head `66a9285` | 3/3 | 3/3 |
+
+Before the fix, the no-deadline call remained pending at the observation bound and the deadline control returned a timeout. At the head, the rejected call received a correlated transport error, and the same client completed a later call on its existing connection after normal reauthorization.
+
+These are measurement cases: baseline processes completed normally while recording defective behavior. A 0/3 result is not a crashed runner. The full upstream suite was not rerun.
+
+[Verification and limits](PR-3278-VERIFICATION.md) · [Actual measurements](evidence/pr3278-verification.json)
+
+## Historical cohorts documented on 23 October 2026
+
+The earlier documentation preparation added zero target tests and zero model calls. These cohorts overlap and **must not be summed** with one another or with the later PR verification as one test suite.
 
 | Evidence cohort | Recorded result | Interpretation |
 | --- | --- | --- |

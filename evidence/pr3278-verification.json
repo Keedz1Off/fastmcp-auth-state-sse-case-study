@@ -1,0 +1,493 @@
+{
+  "date": "2026-10-25",
+  "classification": "bounded verification of a known client reliability fix; not a confirmed security vulnerability",
+  "pull_request": "https://github.com/modelcontextprotocol/python-sdk/pull/3278",
+  "sdk_base_revision": "a4f4ccd091138771535e17191123f20b30fda68e",
+  "sdk_head_revision": "66a928547c160e4aca20a558d28aa50c08151426",
+  "fastmcp_revision": "435948521d40a2d4b9b13b7f76ccfaa6a54a72c6",
+  "source_override_note": "base/head import complete pinned SDK and matching mcp-types sources via PYTHONPATH; installed distribution metadata stays 2.3.0 and is not their source revision",
+  "changed_python_sources": [
+    "src/mcp/client/_transport.py",
+    "src/mcp/client/sse.py",
+    "src/mcp/client/streamable_http.py"
+  ],
+  "source_archive_sha256": {
+    "base": "a9458245b94ca22138cf16ff4c1a7e83851ad787a7330087324ef664611a382f",
+    "head": "fe7d1d33786288b82c97172bda4c273bff3200c1f54bc38e196640bd4f16766b"
+  },
+  "environment": {
+    "release230": {
+      "variant": "release230",
+      "python": "3.12.10",
+      "runtime_distribution_metadata": {
+        "mcp": "2.3.0",
+        "mcp-types": "2.3.0",
+        "fastmcp-slim": "0.0.0",
+        "httpx2": "2.16.0",
+        "anyio": "4.15.1",
+        "starlette": "1.9.0",
+        "uvicorn": "0.54.0",
+        "pydantic": "2.14.1"
+      },
+      "source_override": false,
+      "sdk_sse_sha256": "1d00b57282c7aaa94918f8e84a93bb08b241806bd172ca54723808588e92b581",
+      "fastmcp_python_files_verified": 269
+    },
+    "base": {
+      "variant": "base",
+      "python": "3.12.10",
+      "runtime_distribution_metadata": {
+        "mcp": "2.3.0",
+        "mcp-types": "2.3.0",
+        "fastmcp-slim": "0.0.0",
+        "httpx2": "2.16.0",
+        "anyio": "4.15.1",
+        "starlette": "1.9.0",
+        "uvicorn": "0.54.0",
+        "pydantic": "2.14.1"
+      },
+      "source_override": true,
+      "sdk_sse_sha256": "3cc8d44b03d093503b53342c2b571858b24c9c2a1110b97c80139a40d23cd75a",
+      "fastmcp_python_files_verified": 269
+    },
+    "head": {
+      "variant": "head",
+      "python": "3.12.10",
+      "runtime_distribution_metadata": {
+        "mcp": "2.3.0",
+        "mcp-types": "2.3.0",
+        "fastmcp-slim": "0.0.0",
+        "httpx2": "2.16.0",
+        "anyio": "4.15.1",
+        "starlette": "1.9.0",
+        "uvicorn": "0.54.0",
+        "pydantic": "2.14.1"
+      },
+      "source_override": true,
+      "sdk_sse_sha256": "9e4f94343ef741dbd509cead3a1a7d91deaaf962a5e0fd8f76c43253af897676",
+      "fastmcp_python_files_verified": 269
+    }
+  },
+  "measurements": {
+    "release230": {
+      "variant": "release230",
+      "cases": 3,
+      "fixture_controls_passed": 3,
+      "regression_criteria_passed": 0,
+      "non_loopback_python_network_events": 0,
+      "python_audit_hook_is_not_native_network_confinement": true,
+      "sources_unchanged_after": true,
+      "sdk_python_files_checked": 124,
+      "types_python_files_checked": 8,
+      "records": [
+        {
+          "case": "original_no_rpc_deadline",
+          "variant": "release230",
+          "rpc_timeout_seconds": null,
+          "observation_limit_seconds": 2.0,
+          "fixed_bearer_original_case": true,
+          "same_client_reauthorization_control": false,
+          "load_test": false,
+          "healthy_calls_succeeded": true,
+          "failed_call": {
+            "completed": false,
+            "returned_successfully": false,
+            "error": null,
+            "elapsed_seconds": 2.016
+          },
+          "failure_responses": [
+            {
+              "method": "POST",
+              "path": "/messages/",
+              "status": 401
+            }
+          ],
+          "server_returned_401": true,
+          "tool_count_after_denial": 1,
+          "session_background_running_after_denial": true,
+          "post_writer_logged_error_types": [
+            "ExceptionGroup"
+          ],
+          "independent_client_still_works": true,
+          "independent_tool_count": 2,
+          "listener_closed": true,
+          "fixture_controls_pass": true,
+          "transport_error_delivered": false,
+          "regression_criterion_pass": false
+        },
+        {
+          "case": "original_rpc_deadline_0_5s",
+          "variant": "release230",
+          "rpc_timeout_seconds": 0.5,
+          "observation_limit_seconds": 2.0,
+          "fixed_bearer_original_case": true,
+          "same_client_reauthorization_control": false,
+          "load_test": false,
+          "healthy_calls_succeeded": true,
+          "failed_call": {
+            "completed": true,
+            "returned_successfully": false,
+            "error": {
+              "type": "MCPError",
+              "code": -32001,
+              "message": "Request 'tools/call' timed out"
+            },
+            "elapsed_seconds": 0.515
+          },
+          "failure_responses": [
+            {
+              "method": "POST",
+              "path": "/messages/",
+              "status": 401
+            }
+          ],
+          "server_returned_401": true,
+          "tool_count_after_denial": 1,
+          "session_background_running_after_denial": true,
+          "post_writer_logged_error_types": [
+            "ExceptionGroup"
+          ],
+          "independent_client_still_works": true,
+          "independent_tool_count": 2,
+          "listener_closed": true,
+          "fixture_controls_pass": true,
+          "transport_error_delivered": false,
+          "regression_criterion_pass": false
+        },
+        {
+          "case": "same_principal_reauthorization",
+          "variant": "release230",
+          "rpc_timeout_seconds": null,
+          "observation_limit_seconds": 2.0,
+          "fixed_bearer_original_case": false,
+          "same_client_reauthorization_control": true,
+          "load_test": false,
+          "healthy_calls_succeeded": true,
+          "failed_call": {
+            "completed": false,
+            "returned_successfully": false,
+            "error": null,
+            "elapsed_seconds": 2.016
+          },
+          "failure_responses": [
+            {
+              "method": "POST",
+              "path": "/messages/",
+              "status": 401
+            }
+          ],
+          "server_returned_401": true,
+          "tool_count_after_denial": 1,
+          "session_background_running_after_denial": true,
+          "post_writer_logged_error_types": [
+            "ExceptionGroup"
+          ],
+          "same_connection_recovery": {
+            "completed": true,
+            "returned_successfully": false,
+            "error": {
+              "type": "MCPError",
+              "code": -32000,
+              "message": "Connection closed"
+            },
+            "elapsed_seconds": 0.0
+          },
+          "same_principal_recovery_succeeded": false,
+          "independent_client_still_works": true,
+          "independent_tool_count": 2,
+          "listener_closed": true,
+          "fixture_controls_pass": true,
+          "transport_error_delivered": false,
+          "regression_criterion_pass": false
+        }
+      ]
+    },
+    "base": {
+      "variant": "base",
+      "cases": 3,
+      "fixture_controls_passed": 3,
+      "regression_criteria_passed": 0,
+      "non_loopback_python_network_events": 0,
+      "python_audit_hook_is_not_native_network_confinement": true,
+      "sources_unchanged_after": true,
+      "sdk_python_files_checked": 122,
+      "types_python_files_checked": 8,
+      "records": [
+        {
+          "case": "original_no_rpc_deadline",
+          "variant": "base",
+          "rpc_timeout_seconds": null,
+          "observation_limit_seconds": 2.0,
+          "fixed_bearer_original_case": true,
+          "same_client_reauthorization_control": false,
+          "load_test": false,
+          "healthy_calls_succeeded": true,
+          "failed_call": {
+            "completed": false,
+            "returned_successfully": false,
+            "error": null,
+            "elapsed_seconds": 2.0
+          },
+          "failure_responses": [
+            {
+              "method": "POST",
+              "path": "/messages/",
+              "status": 401
+            }
+          ],
+          "server_returned_401": true,
+          "tool_count_after_denial": 1,
+          "session_background_running_after_denial": true,
+          "post_writer_logged_error_types": [
+            "ExceptionGroup"
+          ],
+          "independent_client_still_works": true,
+          "independent_tool_count": 2,
+          "listener_closed": true,
+          "fixture_controls_pass": true,
+          "transport_error_delivered": false,
+          "regression_criterion_pass": false
+        },
+        {
+          "case": "original_rpc_deadline_0_5s",
+          "variant": "base",
+          "rpc_timeout_seconds": 0.5,
+          "observation_limit_seconds": 2.0,
+          "fixed_bearer_original_case": true,
+          "same_client_reauthorization_control": false,
+          "load_test": false,
+          "healthy_calls_succeeded": true,
+          "failed_call": {
+            "completed": true,
+            "returned_successfully": false,
+            "error": {
+              "type": "MCPError",
+              "code": -32001,
+              "message": "Request 'tools/call' timed out"
+            },
+            "elapsed_seconds": 0.5
+          },
+          "failure_responses": [
+            {
+              "method": "POST",
+              "path": "/messages/",
+              "status": 401
+            }
+          ],
+          "server_returned_401": true,
+          "tool_count_after_denial": 1,
+          "session_background_running_after_denial": true,
+          "post_writer_logged_error_types": [
+            "ExceptionGroup"
+          ],
+          "independent_client_still_works": true,
+          "independent_tool_count": 2,
+          "listener_closed": true,
+          "fixture_controls_pass": true,
+          "transport_error_delivered": false,
+          "regression_criterion_pass": false
+        },
+        {
+          "case": "same_principal_reauthorization",
+          "variant": "base",
+          "rpc_timeout_seconds": null,
+          "observation_limit_seconds": 2.0,
+          "fixed_bearer_original_case": false,
+          "same_client_reauthorization_control": true,
+          "load_test": false,
+          "healthy_calls_succeeded": true,
+          "failed_call": {
+            "completed": false,
+            "returned_successfully": false,
+            "error": null,
+            "elapsed_seconds": 1.985
+          },
+          "failure_responses": [
+            {
+              "method": "POST",
+              "path": "/messages/",
+              "status": 401
+            }
+          ],
+          "server_returned_401": true,
+          "tool_count_after_denial": 1,
+          "session_background_running_after_denial": true,
+          "post_writer_logged_error_types": [
+            "ExceptionGroup"
+          ],
+          "same_connection_recovery": {
+            "completed": true,
+            "returned_successfully": false,
+            "error": {
+              "type": "MCPError",
+              "code": -32000,
+              "message": "Connection closed"
+            },
+            "elapsed_seconds": 0.0
+          },
+          "same_principal_recovery_succeeded": false,
+          "independent_client_still_works": true,
+          "independent_tool_count": 2,
+          "listener_closed": true,
+          "fixture_controls_pass": true,
+          "transport_error_delivered": false,
+          "regression_criterion_pass": false
+        }
+      ]
+    },
+    "head": {
+      "variant": "head",
+      "cases": 3,
+      "fixture_controls_passed": 3,
+      "regression_criteria_passed": 3,
+      "non_loopback_python_network_events": 0,
+      "python_audit_hook_is_not_native_network_confinement": true,
+      "sources_unchanged_after": true,
+      "sdk_python_files_checked": 122,
+      "types_python_files_checked": 8,
+      "records": [
+        {
+          "case": "original_no_rpc_deadline",
+          "variant": "head",
+          "rpc_timeout_seconds": null,
+          "observation_limit_seconds": 2.0,
+          "fixed_bearer_original_case": true,
+          "same_client_reauthorization_control": false,
+          "load_test": false,
+          "healthy_calls_succeeded": true,
+          "failed_call": {
+            "completed": true,
+            "returned_successfully": false,
+            "error": {
+              "type": "MCPError",
+              "code": -32603,
+              "message": "Server returned an error response"
+            },
+            "elapsed_seconds": 0.016
+          },
+          "failure_responses": [
+            {
+              "method": "POST",
+              "path": "/messages/",
+              "status": 401
+            }
+          ],
+          "server_returned_401": true,
+          "tool_count_after_denial": 1,
+          "session_background_running_after_denial": true,
+          "post_writer_logged_error_types": [],
+          "independent_client_still_works": true,
+          "independent_tool_count": 2,
+          "listener_closed": true,
+          "fixture_controls_pass": true,
+          "transport_error_delivered": true,
+          "regression_criterion_pass": true
+        },
+        {
+          "case": "original_rpc_deadline_0_5s",
+          "variant": "head",
+          "rpc_timeout_seconds": 0.5,
+          "observation_limit_seconds": 2.0,
+          "fixed_bearer_original_case": true,
+          "same_client_reauthorization_control": false,
+          "load_test": false,
+          "healthy_calls_succeeded": true,
+          "failed_call": {
+            "completed": true,
+            "returned_successfully": false,
+            "error": {
+              "type": "MCPError",
+              "code": -32603,
+              "message": "Server returned an error response"
+            },
+            "elapsed_seconds": 0.016
+          },
+          "failure_responses": [
+            {
+              "method": "POST",
+              "path": "/messages/",
+              "status": 401
+            }
+          ],
+          "server_returned_401": true,
+          "tool_count_after_denial": 1,
+          "session_background_running_after_denial": true,
+          "post_writer_logged_error_types": [],
+          "independent_client_still_works": true,
+          "independent_tool_count": 2,
+          "listener_closed": true,
+          "fixture_controls_pass": true,
+          "transport_error_delivered": true,
+          "regression_criterion_pass": true
+        },
+        {
+          "case": "same_principal_reauthorization",
+          "variant": "head",
+          "rpc_timeout_seconds": null,
+          "observation_limit_seconds": 2.0,
+          "fixed_bearer_original_case": false,
+          "same_client_reauthorization_control": true,
+          "load_test": false,
+          "healthy_calls_succeeded": true,
+          "failed_call": {
+            "completed": true,
+            "returned_successfully": false,
+            "error": {
+              "type": "MCPError",
+              "code": -32603,
+              "message": "Server returned an error response"
+            },
+            "elapsed_seconds": 0.0
+          },
+          "failure_responses": [
+            {
+              "method": "POST",
+              "path": "/messages/",
+              "status": 401
+            }
+          ],
+          "server_returned_401": true,
+          "tool_count_after_denial": 1,
+          "session_background_running_after_denial": true,
+          "post_writer_logged_error_types": [],
+          "same_connection_recovery": {
+            "completed": true,
+            "returned_successfully": true,
+            "error": null,
+            "elapsed_seconds": 0.0
+          },
+          "same_principal_recovery_succeeded": true,
+          "independent_client_still_works": true,
+          "independent_tool_count": 2,
+          "listener_closed": true,
+          "fixture_controls_pass": true,
+          "transport_error_delivered": true,
+          "regression_criterion_pass": true
+        }
+      ]
+    }
+  },
+  "summary": {
+    "measurement_cases": 9,
+    "fixture_controls_passed": 9,
+    "desired_behavior_cases_release230": 0,
+    "desired_behavior_cases_base": 0,
+    "desired_behavior_cases_head": 3,
+    "original_no_deadline_pending_before": true,
+    "original_no_deadline_error_after": "MCPError -32603",
+    "same_connection_same_principal_recovery_after": true,
+    "server_denial_held_in_every_case": true,
+    "public_comment_posted": false,
+    "full_upstream_suite_run": false,
+    "infinite_wait_or_exploitable_dos_proven": false
+  },
+  "limitations": [
+    "Single Windows/Python environment, three bounded local scenarios per source variant.",
+    "Nine separate synthetic owned loopback fixtures, one rejected protected call per fixture; no load.",
+    "Runtime network audit is Python-level observation, not comprehensive native process confinement.",
+    "No proof of arbitrary deployment behavior, affected release range, exploitability or whole-PR correctness.",
+    "The fix returns generic MCPError; preservation of the original HTTP401 status in structured error data was not verified.",
+    "Baseline observer expiry cancels the pending call, so its connection-reuse result includes that cancellation.",
+    "Fixed/error timing is descriptive only, not a wall-clock performance guarantee."
+  ]
+}

@@ -10,6 +10,8 @@ Read README.md for the summary, FLOW.md for the architecture, CASE-STUDY.md for 
 | [FLOW.md](FLOW.md) | Client/server, authorization, OAuth state, and SSE failure paths. |
 | [CASE-STUDY.md](CASE-STUDY.md) | Main analysis: observations, impact, counterevidence, limits, and recommendations. |
 | [RESULTS.md](RESULTS.md) | Test accounting and what passing or failing checks actually mean. |
+| [PR-3278-VERIFICATION.md](PR-3278-VERIFICATION.md) | Later independent before/after check of the proposed SSE fix. |
+| [evidence/pr3278-verification.json](evidence/pr3278-verification.json) | Nine local measurement cases across release, exact PR base and exact PR head. |
 | evidence/ | Selected sanitized JSON measurements, not executable tests. |
 | [evidence/sse-feedback.json](evidence/sse-feedback.json) | Server rejection, pending RPC, and deadline observations. |
 | [evidence/liveness.json](evidence/liveness.json) | Independent healthy-client and event-loop controls. |
@@ -28,6 +30,8 @@ The study examined authorization, SSE sessions, and persisted OAuth state. In th
 The controls compared behavior without an RPC deadline and with an explicit deadline, then checked an independent client and the event loop. The result is an error-propagation defect, not a demonstrated authorization bypass or application-wide DoS.
 
 The work used AI-assisted analysis and tools; it is not presented as entirely manual review.
+
+The 25 October update also [verified the proposed upstream fix](PR-3278-VERIFICATION.md): the exact PR head delivered the error promptly and supported a later valid call on the same client's existing connection. The historical behavior described below remains preserved as baseline evidence.
 
 ## Normal flow
 

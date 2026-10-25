@@ -6,6 +6,14 @@
 
 Assessed: PrefectHQ FastMCP source snapshot `4359485`. The SSE controls used MCP SDK **2.3.0 and 2.2.0**, with exact dependency fingerprints retained. Snapshot build metadata is not a public FastMCP release number.
 
+## Upstream fix verification — 25 October 2026
+
+Independently compared SDK PR #3278 at exact base `a4f4ccd` and head `66a9285`, with installed mcp 2.3.0 as a release control. Nine fresh local cases checked prompt error delivery, an explicit RPC deadline, and reuse after reauthorization of the same synthetic client.
+
+**Result:** the tested PR head fixed the selected SSE HTTP 401 waiting behavior. All three desired-behavior criteria held on the head; none held on the base or release control. Server denial and the independent healthy-client controls held across all nine cases.
+
+[Before/after verification](PR-3278-VERIFICATION.md) · [Measurements](evidence/pr3278-verification.json) · [Published upstream confirmation](https://github.com/modelcontextprotocol/python-sdk/pull/3278#issuecomment-6401226641)
+
 ## Work performed
 
 - Mapped MCP transports, configured server authorization, OAuth token state and client/session lifecycles.
@@ -21,6 +29,7 @@ Assessed: PrefectHQ FastMCP source snapshot `4359485`. The SSE controls used MCP
 2. [Architecture and failure flows](FLOW.md)
 3. [Case study and observations](CASE-STUDY.md)
 4. [Evidence and result accounting](RESULTS.md)
-5. [Source pins](evidence/source-pins.json) · [offline verification](VERIFY.md)
+5. [Upstream fix verification](PR-3278-VERIFICATION.md)
+6. [Source pins](evidence/source-pins.json) · [offline verification](VERIFY.md)
 
-Independent, AI-assisted, scoped assessment. No confirmed exploitable security vulnerability, CVE, accepted bounty, shipped fix or full-audit claim. Documentation updated 23 October 2026; no new product tests were run for this package.
+Independent, AI-assisted, scoped assessment. No confirmed exploitable security vulnerability, CVE, accepted bounty, shipped fix or full-audit claim. Original package prepared 23 October 2026. The 25 October update adds separately recorded local PR verification; it does not replace the earlier upstream-suite results or claim a full rerun.

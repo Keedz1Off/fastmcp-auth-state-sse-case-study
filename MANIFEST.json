@@ -1,11 +1,11 @@
 {
   "package_type": "documentation-only assessment case study",
-  "documentation_date": "2026-10-23",
-  "source_and_results": "Selected historical evidence; no new target execution",
+  "documentation_date": "2026-10-25",
+  "source_and_results": "Historical assessment plus separately recorded 25 October PR verification; no full upstream rerun",
   "files": {
     "CASE-STUDY.md": {
-      "bytes": 7111,
-      "sha256": "1d3a6a94a724d5956f7fa70b722de01efb237d43287a2b67c99265a004a7cc53"
+      "bytes": 7735,
+      "sha256": "24f2d8caf144c77cf583d29d0250fd2196da69e1be9a7403f43d5ffe37b64a40"
     },
     "evidence/liveness.json": {
       "bytes": 3398,
@@ -14,6 +14,10 @@
     "evidence/observations.json": {
       "bytes": 2267,
       "sha256": "55923c02d622566ab659781bb4f3898d520045c9eceb7a0764bc64e42d2f2e36"
+    },
+    "evidence/pr3278-verification.json": {
+      "bytes": 17300,
+      "sha256": "3dbddbf3e04b85cf7ccd1bec525fe78152ddbc27a62fca862d22096bbfce57ae"
     },
     "evidence/source-pins.json": {
       "bytes": 2694,
@@ -27,10 +31,6 @@
       "bytes": 3630,
       "sha256": "fd58a1a98cbd91e5d0d417b15705c39d388cd4b7d873387aefd724d28afd22ab"
     },
-    "READING-GUIDE.md": {
-      "bytes": 6448,
-      "sha256": "31fb5f8446372991e04859bdad1f3584006415facc63295ad21dc07c70da2bd7"
-    },
     "FLOW.md": {
       "bytes": 3306,
       "sha256": "27a500176b60bcc7e9cff05240761427999a7164909f2180ffabb7ba058cde92"
@@ -39,13 +39,21 @@
       "bytes": 878,
       "sha256": "e1065d52e7857c31e6e8e7e1257b03095b4a666eb22545f064c8f0adc2d1b6e2"
     },
+    "PR-3278-VERIFICATION.md": {
+      "bytes": 3478,
+      "sha256": "6a8cd550ebe2978cd7a3f57060e3c73c40f0cf2c6085f4b0397cfcdc94b6aacc"
+    },
+    "READING-GUIDE.md": {
+      "bytes": 7015,
+      "sha256": "db6e33864fb9efbb5accf27ef8f4b357f285fe55d56672a1085c13dfae293dca"
+    },
     "README.md": {
-      "bytes": 2008,
-      "sha256": "09f1beb06274aaab02f05772b99d4ad8eb8ad0bddbc3ac3a16be9463d4b7ded9"
+      "bytes": 2982,
+      "sha256": "f0c78f953468bceead5d5204df1fe2b26fab8ad058009c1b8aba79eb23d4e625"
     },
     "RESULTS.md": {
-      "bytes": 2397,
-      "sha256": "cb2af2a9579957e715602e888cfbbb71719f01fb50c9980435c994369b25a283"
+      "bytes": 3443,
+      "sha256": "8f94325553add88fa40b0430f7e3b47d82ac059d82f4db10ddcb6c492300b4e5"
     },
     "VERIFY.md": {
       "bytes": 515,

@@ -1,5 +1,9 @@
 # FastMCP case study
 
+## Verification update — 25 October 2026
+
+The original assessment below records the unfixed behavior. A later independent comparison of SDK PR #3278 verified that head `66a928547c160e4aca20a558d28aa50c08151426` fixes the selected HTTP 401 SSE case relative to its exact base, while preserving denial and ordinary client operation. See [the before/after verification](PR-3278-VERIFICATION.md) and [measurements](evidence/pr3278-verification.json). The fix is proposed upstream; no shipped fixed release is claimed here.
+
 ## Executive Summary
 
 In the owned SSE stand, a server rejection and a client wait coexisted: HTTP 401 prevented the revoked client's tool body from executing again, but the waiting RPC did not promptly receive the transport error. Without an RPC deadline it was still pending at the two-second harness bound and was cancelled. With a 0.5-second deadline it failed with MCPError in 0.515/0.516 seconds.
@@ -14,7 +18,7 @@ FastMCP provides MCP clients and servers; MCP is a protocol, not the LLM. Applic
 
 In the stand, a synthetic credential had previously succeeded and was then revoked. A marker counted actual tool executions. Server responses and counters, not client success messages, established whether access survived.
 
-## Vulnerability Details
+## Observed defect
 
 No report-ready security vulnerability is claimed. The observed sequence was:
 
@@ -26,7 +30,7 @@ No report-ready security vulnerability is claimed. The observed sequence was:
 
 The retained SDK SSE files have the same SHA256 in both tested environments. That establishes inspected file equality, not a general affected-version range.
 
-## Exploitability Analysis
+## Security impact and limits
 
 | Observation | Classification and limit |
 | --- | --- |
@@ -48,7 +52,7 @@ The factory passes a default 30-second request deadline and separate 10-second i
 
 This is counterevidence to transferring the no-RPC-deadline condition unchanged. It is not a runtime result, a 30-second total-job SLA, proof of remote cancellation, or confirmation of this app being affected. Its full checkout failed on Windows path length; analysis used downloaded pinned Git objects and verified locked wheels.
 
-## Proof of Concept
+## Recorded validation evidence
 
 This documentation package contains selected sanitized JSON measurements, not an exploit runner or the complete raw traces. All runtime observations came from prior owned local checks.
 
@@ -62,7 +66,7 @@ See [results and qualifications](RESULTS.md). No load, saturation, production-ta
 
 ## Remediation
 
-No upstream fix was submitted or verified. The narrow SSE recommendation is to communicate writer/transport failure to pending RPCs or terminate the associated session coherently, while preserving cancellation and cleanup.
+The original assessment did not implement or verify an upstream fix. The subsequent [PR #3278 verification](PR-3278-VERIFICATION.md) confirmed prompt error delivery and same-client connection reuse for the selected local HTTP 401 scenario. The patch was authored upstream; this case study independently verified it.
 
 Explicit RPC deadlines are a tested mitigation of waiting, not a substitute for correct failure delivery. Shared refresh coordination and atomic token/expiry persistence should be designed and verified when an application requires those guarantees. An owner-only cache policy also requires validating OS identities, parent-directory trust and key access.
 
