@@ -44,12 +44,12 @@
       "sha256": "6a8cd550ebe2978cd7a3f57060e3c73c40f0cf2c6085f4b0397cfcdc94b6aacc"
     },
     "READING-GUIDE.md": {
-      "bytes": 7015,
-      "sha256": "db6e33864fb9efbb5accf27ef8f4b357f285fe55d56672a1085c13dfae293dca"
+      "bytes": 7545,
+      "sha256": "a581128e44511b523ab17f0584a5914d7c38904bfbd832c68c1616f5823e019c"
     },
     "README.md": {
-      "bytes": 2982,
-      "sha256": "f0c78f953468bceead5d5204df1fe2b26fab8ad058009c1b8aba79eb23d4e625"
+      "bytes": 3771,
+      "sha256": "6daacc09d79ba8c190e95a56dfb21dd4e6361dc89adfb1cfd9db10352a5b4abc"
     },
     "RESULTS.md": {
       "bytes": 3443,
@@ -63,5 +63,7 @@
       "bytes": 1853,
       "sha256": "af486fe891111d71fbc7628933a37ce727fd1806aafe309078f25d97372cc093"
     }
-  }
+  },
+  "navigation_update_date": "2026-10-31",
+  "navigation_update_scope": "README diagrams and reading guidance; historical target results unchanged; no new target execution"
 }

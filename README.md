@@ -14,6 +14,22 @@ Independently compared SDK PR #3278 at exact base `a4f4ccd` and head `66a9285`, 
 
 [Before/after verification](PR-3278-VERIFICATION.md) · [Measurements](evidence/pr3278-verification.json) · [Published upstream confirmation](https://github.com/modelcontextprotocol/python-sdk/pull/3278#issuecomment-6401226641)
 
+## Quick orientation
+
+```mermaid
+flowchart LR
+    H["Host selects a tool call"] --> C["FastMCP client"]
+    C --> P["Legacy SSE: HTTP POST writer"]
+    P --> S["Server checks revoked token"]
+    S --> D["HTTP 401; tool not re-entered"]
+    D --> W["Baseline: RPC waiter not notified promptly"]
+    D --> F["Tested PR head: RPC receives an error"]
+```
+
+The last two branches are **separate before/after runs**, not simultaneous results. The server denied access in both. The defect was delivery of that failure to the waiting client.
+
+**Reading route:** [flow](FLOW.md) → [baseline analysis](CASE-STUDY.md) → [before/after fix verification](PR-3278-VERIFICATION.md) → [measurements](evidence/pr3278-verification.json). Use [READING-GUIDE.md](READING-GUIDE.md) for the full file map.
+
 ## Work performed
 
 - Mapped MCP transports, configured server authorization, OAuth token state and client/session lifecycles.

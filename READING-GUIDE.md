@@ -1,5 +1,12 @@
 # FastMCP: reading guide
 
+## Pick a reading depth
+
+- **Two minutes:** README → the normal and observed diagrams in [FLOW.md](FLOW.md).
+- **Technical review:** [CASE-STUDY.md](CASE-STUDY.md) → [RESULTS.md](RESULTS.md) → [PR-3278-VERIFICATION.md](PR-3278-VERIFICATION.md).
+- **Evidence review:** [SSE observations](evidence/sse-feedback.json) → [liveness controls](evidence/liveness.json) → [before/after measurements](evidence/pr3278-verification.json).
+- **Package verification:** [VERIFY.md](VERIFY.md). Passing it is not a fresh SDK test run.
+
 ## Where to start
 
 Read README.md for the summary, FLOW.md for the architecture, CASE-STUDY.md for the reasoning, and RESULTS.md for the result accounting. Consult evidence/ only when you want the exact measurements or source pins.
