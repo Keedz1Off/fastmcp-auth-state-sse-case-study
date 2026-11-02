@@ -1,51 +1,18 @@
-# FastMCP: authentication, state and SSE failure analysis
+# FastMCP: server rejected a call, client kept waiting
 
-**Question:** do authorization decisions, client errors and shared OAuth state preserve their intended boundaries?
+**Status:** client/dependency error-handling bug; no authorization bypass demonstrated.
 
-**Main result:** the owned server correctly denied a revoked synthetic credential with HTTP 401, while an SSE client RPC remained pending at a two-second observation bound. An explicit 0.5-second RPC deadline produced MCPError in approximately 0.52 seconds. This is a confirmed client/dependency **error-propagation defect**, not a demonstrated authorization bypass or application-wide DoS.
+The application made a protected tool call over an open legacy SSE connection after its token was revoked.
 
-Assessed: PrefectHQ FastMCP source snapshot `4359485`. The SSE controls used MCP SDK **2.3.0 and 2.2.0**, with exact dependency fingerprints retained. Snapshot build metadata is not a public FastMCP release number.
+- **Expected:** server denies access; the application promptly receives an error.
+- **Observed:** HTTP 401 blocked the tool, but the client call stayed pending at the two-second test bound. A configured deadline produced a timeout instead.
+- **Impact:** the calling application waited unnecessarily. Independent work continued; an application-wide outage was not demonstrated.
+- **Fix verification:** upstream SDK PR #3278 head `66a9285` returned an error promptly and passed the selected reauthorization control, unlike base `a4f4ccd`. This is scoped verification, not a shipped-release claim.
 
-## Upstream fix verification — 25 October 2026
+## Evidence and details
 
-Independently compared SDK PR #3278 at exact base `a4f4ccd` and head `66a9285`, with installed mcp 2.3.0 as a release control. Nine fresh local cases checked prompt error delivery, an explicit RPC deadline, and reuse after reauthorization of the same synthetic client.
+[Before/after results](PR-3278-VERIFICATION.md) · [Boundary matrix](matrices/boundaries.json) · [Flow](FLOW.md) · [Measurements](evidence/pr3278-verification.json)
 
-**Result:** the tested PR head fixed the selected SSE HTTP 401 waiting behavior. All three desired-behavior criteria held on the head; none held on the base or release control. Server denial and the independent healthy-client controls held across all nine cases.
+FastMCP snapshot: `4359485`. [Technical assessment](CASE-STUDY.md) · [Other results](RESULTS.md) · [File map](READING-GUIDE.md) · [Package check](VERIFY.md) · [Attribution / AI assistance](NOTICE.md).
 
-[Before/after verification](PR-3278-VERIFICATION.md) · [Measurements](evidence/pr3278-verification.json) · [Published upstream confirmation](https://github.com/modelcontextprotocol/python-sdk/pull/3278#issuecomment-6401226641)
-
-## Quick orientation
-
-```mermaid
-flowchart LR
-    H["Host selects a tool call"] --> C["FastMCP client"]
-    C --> P["Legacy SSE: HTTP POST writer"]
-    P --> S["Server checks revoked token"]
-    S --> D["HTTP 401; tool not re-entered"]
-    D --> W["Baseline: RPC waiter not notified promptly"]
-    D --> F["Tested PR head: RPC receives an error"]
-```
-
-The last two branches are **separate before/after runs**, not simultaneous results. The server denied access in both. The defect was delivery of that failure to the waiting client.
-
-**Reading route:** [flow](FLOW.md) → [baseline analysis](CASE-STUDY.md) → [before/after fix verification](PR-3278-VERIFICATION.md) → [measurements](evidence/pr3278-verification.json). Use [READING-GUIDE.md](READING-GUIDE.md) for the full file map.
-
-## Work performed
-
-- Mapped MCP transports, configured server authorization, OAuth token state and client/session lifecycles.
-- Examined JWT/OAuth, PKCE/JWKS, SSE/STDIO, callback/refresh, persistence and selected storage-isolation controls.
-- Classified concurrent-refresh, interrupted-write, revocation-compatibility and Windows deployment-policy observations separately.
-- Used independent healthy-client and event-loop controls to challenge the DoS interpretation.
-- Traced a real consumer's supported SSE path and deadline wiring by source, without running that application.
-- Ran and triaged the original upstream suite; it remained red, rather than being replaced by successful diagnostics.
-
-## Read in order
-
-1. [Reading guide and file map](READING-GUIDE.md)
-2. [Architecture and failure flows](FLOW.md)
-3. [Case study and observations](CASE-STUDY.md)
-4. [Evidence and result accounting](RESULTS.md)
-5. [Upstream fix verification](PR-3278-VERIFICATION.md)
-6. [Source pins](evidence/source-pins.json) · [offline verification](VERIFY.md)
-
-Independent, AI-assisted, scoped assessment. No confirmed exploitable security vulnerability, CVE, accepted bounty, shipped fix or full-audit claim. Original package prepared 23 October 2026. The 25 October update adds separately recorded local PR verification; it does not replace the earlier upstream-suite results or claim a full rerun.
+Historical results; no new target execution in this documentation edit.
