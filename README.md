@@ -21,25 +21,25 @@ flowchart LR
     T --> F["Tested PR head: caller gets prompt error"]
 ```
 
-## How to read
+## JSON matrices
 
-The summary and flow above explain the main result. Expand **Technical details** to inspect test cases, supporting records and exact versions.
-
-<details>
-<summary>Technical details: matrices and evidence</summary>
-
-1. Read the summary and flow to separate server denial from client error delivery.
-2. Open [SSE](matrices/SSE.json), row `FM-ERROR`, for the base/head comparison; then [AUTH](matrices/AUTH.json) for access controls. `invariant` is the required rule, `oracle` the measurement, and `observed` the result.
-3. Follow `evidence[].url`; a `pointer`, when present, selects a nested JSON entry. Read `status` with `limits`: fix verification applies to the stated scenario and commits.
-
-### Matrices
-
-| Boundary | JSON |
+| Boundary checked | JSON matrix |
 | --- | --- |
 | Credential denial / revocation compatibility | [AUTH](matrices/AUTH.json) |
 | Error propagation, deadline and recovery | [SSE](matrices/SSE.json) |
 | Refresh coordination and crash consistency | [OAUTH-STORAGE](matrices/OAUTH-STORAGE.json) |
 | Chosen owner-only deployment policy | [OS-ISOLATION](matrices/OS-ISOLATION.json) |
+
+## How to read
+
+Read the summary and flow, then choose a JSON matrix above. Expand **Technical details** for field guidance, supporting records and exact versions.
+
+<details>
+<summary>Technical details: reading guide and evidence</summary>
+
+1. Read the summary and flow to separate server denial from client error delivery.
+2. Open [SSE](matrices/SSE.json), row `FM-ERROR`, for the base/head comparison; then [AUTH](matrices/AUTH.json) for access controls. `invariant` is the required rule, `oracle` the measurement, and `observed` the result.
+3. Follow `evidence[].url`; a `pointer`, when present, selects a nested JSON entry. Read `status` with `limits`: fix verification applies to the stated scenario and commits.
 
 [Evidence archive: detailed report, tests, logs and source pins](https://github.com/Keedz1Off/fastmcp-auth-state-sse-case-study/tree/291534dd73ebc992db23b9e1834dc9ed151c3246) are preserved in the pinned evidence snapshot. Matrix links open the exact supporting records.
 

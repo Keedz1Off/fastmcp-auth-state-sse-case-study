@@ -1,7 +1,7 @@
 {
   "format": "matrix-first portfolio package",
   "date": "2026-11-02",
-  "scope": "Documentation-only default reading view; no new target tests",
+  "scope": "Documentation-only visible JSON matrix index; no new target tests",
   "evidence_snapshot": "291534dd73ebc992db23b9e1834dc9ed151c3246",
   "matrix_count": 4,
   "files": {
@@ -22,8 +22,8 @@
       "sha256": "ecb1ab8f76513b713683d9a529c38116c7a9a106dbdbaf765b481cb3b4c8685b"
     },
     "README.md": {
-      "bytes": 2802,
-      "sha256": "93a16da59b80c7ff423b55d379de9a956d7bf71e21f4edda6149ce50be620769"
+      "bytes": 2831,
+      "sha256": "27ed15d4377121ab348015ae42f7aa44a82e3e386dd6ebea1bb03747a0331898"
     }
   }
 }
