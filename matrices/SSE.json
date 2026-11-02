@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "id": "SSE",
+  "title": "Error propagation, deadline and recovery",
+  "project": "PrefectHQ FastMCP / MCP Python SDK",
+  "scope": "FastMCP 4359485; selected MCP SDK environments and PR #3278 base/head.",
+  "evidence_state": "Retained historical results and source analysis; per-row status and limits apply.",
+  "source_pins": "https://github.com/Keedz1Off/fastmcp-auth-state-sse-case-study/blob/291534dd73ebc992db23b9e1834dc9ed151c3246/evidence/source-pins.json",
+  "evidence_snapshot": {
+    "commit": "291534dd73ebc992db23b9e1834dc9ed151c3246",
+    "url": "https://github.com/Keedz1Off/fastmcp-auth-state-sse-case-study/tree/291534dd73ebc992db23b9e1834dc9ed151c3246"
+  },
+  "interpretation": "This matrix indexes existing evidence. Rows are not additional tests, and no structural or security closure is inferred from a PASS count.",
+  "rows": [
+    {
+      "id": "FM-ERROR",
+      "boundary": "HTTP POST writer -> waiting RPC",
+      "invariant": "A rejected request should promptly notify its waiting RPC.",
+      "scenario": "Rejected call without an RPC deadline; compare release control, PR base and PR head.",
+      "oracle": "RPC completion/error and elapsed time, independently of server denial.",
+      "observed": "Base/release still pending at the two-second observation bound; tested PR head returned MCPError -32603 in about 0.016 seconds.",
+      "status": "baseline_defect_selected_fix_verified",
+      "evidence": [
+        {
+          "url": "https://github.com/Keedz1Off/fastmcp-auth-state-sse-case-study/blob/291534dd73ebc992db23b9e1834dc9ed151c3246/PR-3278-VERIFICATION.md"
+        },
+        {
+          "url": "https://github.com/Keedz1Off/fastmcp-auth-state-sse-case-study/blob/291534dd73ebc992db23b9e1834dc9ed151c3246/evidence/pr3278-verification.json"
+        }
+      ],
+      "limits": "Head 66a9285 versus base a4f4ccd; not an infinite-wait proof, entire-PR certification or shipped-release claim."
+    },
+    {
+      "id": "FM-DEADLINE",
+      "boundary": "Request lifetime -> explicit RPC deadline",
+      "invariant": "An explicit deadline should bound the response wait.",
+      "scenario": "Same rejected call with a 0.5-second RPC deadline.",
+      "oracle": "Returned error and measured duration.",
+      "observed": "Baseline ended with request timeout; PR head returned a transport-related error promptly.",
+      "status": "deadline_mitigation_observed",
+      "evidence": [
+        {
+          "url": "https://github.com/Keedz1Off/fastmcp-auth-state-sse-case-study/blob/291534dd73ebc992db23b9e1834dc9ed151c3246/evidence/sse-feedback.json"
+        },
+        {
+          "url": "https://github.com/Keedz1Off/fastmcp-auth-state-sse-case-study/blob/291534dd73ebc992db23b9e1834dc9ed151c3246/evidence/pr3278-verification.json"
+        }
+      ],
+      "limits": "A timeout bounds waiting but does not repair error propagation."
+    },
+    {
+      "id": "FM-RECOVERY",
+      "boundary": "Reauthorized client -> existing connection",
+      "invariant": "The selected follow-up should work after normal reauthorization.",
+      "scenario": "New valid token for the same registered client after the rejected call.",
+      "oracle": "Follow-up success on the existing connection.",
+      "observed": "Tested head follow-up succeeded; baseline reported Connection closed.",
+      "status": "selected_fix_recovery_verified",
+      "evidence": [
+        {
+          "url": "https://github.com/Keedz1Off/fastmcp-auth-state-sse-case-study/blob/291534dd73ebc992db23b9e1834dc9ed151c3246/PR-3278-VERIFICATION.md"
+        },
+        {
+          "url": "https://github.com/Keedz1Off/fastmcp-auth-state-sse-case-study/blob/291534dd73ebc992db23b9e1834dc9ed151c3246/evidence/pr3278-verification.json"
+        }
+      ],
+      "limits": "Harness cancellation precedes baseline recovery; it is not isolated evidence about 401 alone."
+    },
+    {
+      "id": "FM-LIVENESS",
+      "boundary": "One pending call -> unrelated client / event loop",
+      "invariant": "One pending operation should not block the selected independent work.",
+      "scenario": "Run a healthy independent call and heartbeat while one rejected RPC is pending.",
+      "oracle": "Independent call completion and heartbeat.",
+      "observed": "Both controls completed in the bounded fixture.",
+      "status": "scoped_liveness_controls_passed",
+      "evidence": [
+        {
+          "url": "https://github.com/Keedz1Off/fastmcp-auth-state-sse-case-study/blob/291534dd73ebc992db23b9e1834dc9ed151c3246/evidence/liveness.json"
+        }
+      ],
+      "limits": "One failing operation at a time; no load, exhaustion or consumer-runtime test."
+    }
+  ]
+}

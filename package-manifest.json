@@ -1,0 +1,29 @@
+{
+  "format": "matrix-first portfolio package",
+  "date": "2026-11-02",
+  "scope": "Documentation reorganisation; no new target tests",
+  "evidence_snapshot": "291534dd73ebc992db23b9e1834dc9ed151c3246",
+  "matrix_count": 4,
+  "files": {
+    "matrices/AUTH.json": {
+      "bytes": 2855,
+      "sha256": "98f5b26eeb5c47bdc69568cb6a87f3c8d2fae5b1434737275dad0a079ce77a70"
+    },
+    "matrices/SSE.json": {
+      "bytes": 4671,
+      "sha256": "ad7bb555e762c9e40ae7515c9cb543f0459d1f90bc49f7df4c1f75376f29d34b"
+    },
+    "matrices/OAUTH-STORAGE.json": {
+      "bytes": 3025,
+      "sha256": "74870eb9afac89ae8eab0ed76d88d7828b38cb458310b380011d4f225f0b59c5"
+    },
+    "matrices/OS-ISOLATION.json": {
+      "bytes": 1889,
+      "sha256": "ecb1ab8f76513b713683d9a529c38116c7a9a106dbdbaf765b481cb3b4c8685b"
+    },
+    "README.md": {
+      "bytes": 1867,
+      "sha256": "3b393f7388074bcbe774a45389b526ff7b2a6bfe300f27a3f12458f22c65bd39"
+    }
+  }
+}

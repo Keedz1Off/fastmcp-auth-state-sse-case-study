@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "id": "OAUTH-STORAGE",
+  "title": "Refresh coordination and crash consistency",
+  "project": "PrefectHQ FastMCP / MCP Python SDK",
+  "scope": "FastMCP 4359485; selected MCP SDK environments and PR #3278 base/head.",
+  "evidence_state": "Retained historical results and source analysis; per-row status and limits apply.",
+  "source_pins": "https://github.com/Keedz1Off/fastmcp-auth-state-sse-case-study/blob/291534dd73ebc992db23b9e1834dc9ed151c3246/evidence/source-pins.json",
+  "evidence_snapshot": {
+    "commit": "291534dd73ebc992db23b9e1834dc9ed151c3246",
+    "url": "https://github.com/Keedz1Off/fastmcp-auth-state-sse-case-study/tree/291534dd73ebc992db23b9e1834dc9ed151c3246"
+  },
+  "interpretation": "This matrix indexes existing evidence. Rows are not additional tests, and no structural or security closure is inferred from a PASS count.",
+  "rows": [
+    {
+      "id": "OBS-01",
+      "boundary": "Shared OAuth contexts -> token storage",
+      "invariant": "If a deployment requires serialized refresh, sharing storage must not be mistaken for a shared live lock.",
+      "scenario": "Colliding refresh from separate contexts.",
+      "oracle": "Retained observation summary and source analysis.",
+      "observed": "Separate live OAuth contexts sharing storage did not serialize the first colliding refresh; one reauthorized, later cycles used different pairs.",
+      "status": "coordination/reliability limitation",
+      "evidence": [
+        {
+          "url": "https://github.com/Keedz1Off/fastmcp-auth-state-sse-case-study/blob/291534dd73ebc992db23b9e1834dc9ed151c3246/evidence/observations.json",
+          "pointer": "/observations/0"
+        },
+        {
+          "url": "https://github.com/Keedz1Off/fastmcp-auth-state-sse-case-study/blob/291534dd73ebc992db23b9e1834dc9ed151c3246/CASE-STUDY.md"
+        }
+      ],
+      "limits": "Owned provider rotation policy; no exactly-once guarantee established"
+    },
+    {
+      "id": "OBS-02",
+      "boundary": "Token pair -> expiry persistence",
+      "invariant": "If atomic state is required, an interrupted save must not mix token generations.",
+      "scenario": "Controlled exit between token-pair and expiry writes.",
+      "oracle": "Retained observation summary and source analysis.",
+      "observed": "Controlled process exit between token and expiry writes left new token pair with prior expiry; SQLite valid; explicit retry repaired test state.",
+      "status": "crash-consistency limitation",
+      "evidence": [
+        {
+          "url": "https://github.com/Keedz1Off/fastmcp-auth-state-sse-case-study/blob/291534dd73ebc992db23b9e1834dc9ed151c3246/evidence/observations.json",
+          "pointer": "/observations/1"
+        },
+        {
+          "url": "https://github.com/Keedz1Off/fastmcp-auth-state-sse-case-study/blob/291534dd73ebc992db23b9e1834dc9ed151c3246/CASE-STUDY.md"
+        }
+      ],
+      "limits": "Historical controlled interruption, not proof of natural exploit or automatic recovery"
+    }
+  ]
+}

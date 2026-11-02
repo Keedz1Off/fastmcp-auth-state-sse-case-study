@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "id": "OS-ISOLATION",
+  "title": "Chosen owner-only deployment policy",
+  "project": "PrefectHQ FastMCP / MCP Python SDK",
+  "scope": "FastMCP 4359485; selected MCP SDK environments and PR #3278 base/head.",
+  "evidence_state": "Retained historical results and source analysis; per-row status and limits apply.",
+  "source_pins": "https://github.com/Keedz1Off/fastmcp-auth-state-sse-case-study/blob/291534dd73ebc992db23b9e1834dc9ed151c3246/evidence/source-pins.json",
+  "evidence_snapshot": {
+    "commit": "291534dd73ebc992db23b9e1834dc9ed151c3246",
+    "url": "https://github.com/Keedz1Off/fastmcp-auth-state-sse-case-study/tree/291534dd73ebc992db23b9e1834dc9ed151c3246"
+  },
+  "interpretation": "This matrix indexes existing evidence. Rows are not additional tests, and no structural or security closure is inferred from a PASS count.",
+  "rows": [
+    {
+      "id": "OBS-04",
+      "boundary": "OS identity -> token cache",
+      "invariant": "The chosen owner-only deployment policy should exclude additional OS identities.",
+      "scenario": "Inspect inherited Windows DACL with modeled SIDs.",
+      "oracle": "Retained observation summary and source analysis.",
+      "observed": "Inherited Windows DACL granted extra modeled SIDs access contrary to the selected owner-only deployment policy.",
+      "status": "deployment-policy failure",
+      "evidence": [
+        {
+          "url": "https://github.com/Keedz1Off/fastmcp-auth-state-sse-case-study/blob/291534dd73ebc992db23b9e1834dc9ed151c3246/evidence/observations.json",
+          "pointer": "/observations/3"
+        },
+        {
+          "url": "https://github.com/Keedz1Off/fastmcp-auth-state-sse-case-study/blob/291534dd73ebc992db23b9e1834dc9ed151c3246/CASE-STUDY.md"
+        }
+      ],
+      "limits": "No real second-user process, key-access or plaintext disclosure established"
+    }
+  ]
+}
