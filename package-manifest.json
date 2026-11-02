@@ -1,7 +1,7 @@
 {
   "format": "matrix-first portfolio package",
   "date": "2026-11-02",
-  "scope": "Documentation reorganisation; no new target tests",
+  "scope": "Documentation-only reading guide and logical flow diagrams; no new target tests",
   "evidence_snapshot": "291534dd73ebc992db23b9e1834dc9ed151c3246",
   "matrix_count": 4,
   "files": {
@@ -22,8 +22,8 @@
       "sha256": "ecb1ab8f76513b713683d9a529c38116c7a9a106dbdbaf765b481cb3b4c8685b"
     },
     "README.md": {
-      "bytes": 1867,
-      "sha256": "3b393f7388074bcbe774a45389b526ff7b2a6bfe300f27a3f12458f22c65bd39"
+      "bytes": 2528,
+      "sha256": "9a7d669c346a103b72f0df3bb9a98d40f015e624ba1b71558f8ca562ff51916f"
     }
   }
 }

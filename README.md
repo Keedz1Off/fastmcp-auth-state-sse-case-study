@@ -9,7 +9,23 @@ The application made a protected tool call over an open legacy SSE connection af
 - **Impact:** the calling application waited unnecessarily. Independent work continued; an application-wide outage was not demonstrated.
 - **Fix verification:** upstream SDK PR #3278 head `66a9285` returned an error promptly and passed the selected reauthorization control, unlike base `a4f4ccd`. This is scoped verification, not a shipped-release claim.
 
-**Flow:** Application → FastMCP / SDK → server 401 → waiting client call.
+## Flow
+
+```mermaid
+flowchart LR
+    A["Application call"] --> C["FastMCP / SDK, open legacy SSE"]
+    C --> P["HTTP POST with revoked token"]
+    P --> S["Server: 401, protected tool not run"]
+    S --> T["SDK transport receives rejection"]
+    T --> W["Baseline: caller pending at 2 seconds"]
+    T --> F["Tested PR head: caller gets prompt error"]
+```
+
+## How to read
+
+1. Read the summary and flow to separate server denial from client error delivery.
+2. Open [SSE](matrices/SSE.json), row `FM-ERROR`, for the base/head comparison; then [AUTH](matrices/AUTH.json) for access controls. `invariant` is the required rule, `oracle` the measurement, and `observed` the result.
+3. Follow `evidence[].url`; a `pointer`, when present, selects a nested JSON entry. Read `status` with `limits`: fix verification applies to the stated scenario and commits.
 
 ## Matrices
 
@@ -19,8 +35,6 @@ The application made a protected tool call over an open legacy SSE connection af
 | Error propagation, deadline and recovery | [SSE](matrices/SSE.json) |
 | Refresh coordination and crash consistency | [OAUTH-STORAGE](matrices/OAUTH-STORAGE.json) |
 | Chosen owner-only deployment policy | [OS-ISOLATION](matrices/OS-ISOLATION.json) |
-
-Read each row as: **invariant → scenario → oracle → observation → status → evidence → limit**.
 
 [Detailed report, tests, logs and source pins](https://github.com/Keedz1Off/fastmcp-auth-state-sse-case-study/tree/291534dd73ebc992db23b9e1834dc9ed151c3246) are preserved in the pinned evidence snapshot. Matrix links open the exact supporting records.
 
