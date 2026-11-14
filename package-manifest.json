@@ -1,29 +1,42 @@
 {
   "format": "matrix-first portfolio package",
-  "date": "2026-11-02",
-  "scope": "Documentation-only visible JSON matrix index; no new target tests",
+  "date": "2026-11-14",
+  "scope": "Boundary matrices, recorded evidence and offline checks",
   "evidence_snapshot": "291534dd73ebc992db23b9e1834dc9ed151c3246",
   "matrix_count": 4,
   "files": {
-    "matrices/AUTH.json": {
-      "bytes": 2855,
-      "sha256": "98f5b26eeb5c47bdc69568cb6a87f3c8d2fae5b1434737275dad0a079ce77a70"
+    "evidence/pr3278-verification.json": {
+      "bytes": 17300,
+      "sha256": "3dbddbf3e04b85cf7ccd1bec525fe78152ddbc27a62fca862d22096bbfce57ae"
     },
-    "matrices/SSE.json": {
-      "bytes": 4671,
-      "sha256": "ad7bb555e762c9e40ae7515c9cb543f0459d1f90bc49f7df4c1f75376f29d34b"
+    "matrices/AUTH.json": {
+      "bytes": 2908,
+      "sha256": "b6b2eaffbb8508d8c0c58b977fc2d4259c83178bd846a9e6dd6619da7124bbb2"
+    },
+    "matrices/boundaries.json": {
+      "bytes": 9305,
+      "sha256": "958cfbbaa27a684271bfcd571f4b4b0e5bf8c2fec75d777b74f2dcfc22750d01"
     },
     "matrices/OAUTH-STORAGE.json": {
-      "bytes": 3025,
-      "sha256": "74870eb9afac89ae8eab0ed76d88d7828b38cb458310b380011d4f225f0b59c5"
+      "bytes": 3079,
+      "sha256": "53dfd7519241e51f86df692a1d1f040414a8788c6bcf65b155de907a7b31f078"
     },
     "matrices/OS-ISOLATION.json": {
-      "bytes": 1889,
-      "sha256": "ecb1ab8f76513b713683d9a529c38116c7a9a106dbdbaf765b481cb3b4c8685b"
+      "bytes": 1924,
+      "sha256": "3cfe122f2fb91476f952395b071317517a96384dcae3730f71fe5fdf020083ea"
+    },
+    "matrices/SSE.json": {
+      "bytes": 4756,
+      "sha256": "741e314fb1fc18034327dbdcc3911460962ed777e1dada7dc9858c43354102b7"
     },
     "README.md": {
-      "bytes": 2831,
-      "sha256": "27ed15d4377121ab348015ae42f7aa44a82e3e386dd6ebea1bb03747a0331898"
+      "bytes": 3311,
+      "sha256": "c6b63c1790c7774577ee07d7d03feadfdcd7a3e870d1a8e217008a5fa571fbce"
+    },
+    "tests/test_recorded_evidence.py": {
+      "bytes": 1794,
+      "sha256": "bd713d2cdef9692158a39d063c560edea53a8033e5316a85554109897c38a2a4"
     }
-  }
+  },
+  "boundary_index": "matrices/boundaries.json"
 }

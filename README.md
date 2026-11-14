@@ -9,6 +9,18 @@ FastMCP connects applications to MCP tools. We tested a protected call over an o
 - **Impact:** the calling application waited unnecessarily. Independent work continued; an application-wide outage was not demonstrated.
 - **Fix verification:** upstream SDK PR #3278 head `66a9285` returned an error promptly and passed the selected reauthorization control, unlike base `a4f4ccd`. This is scoped verification, not a shipped-release claim.
 
+## Boundaries, tests and evidence
+
+Open the [boundary index](matrices/boundaries.json) and the [recorded SDK comparison](evidence/pr3278-verification.json). [Python tests](tests/test_recorded_evidence.py) check the saved server-denial and error-delivery results. The original local FastMCP harness is not in the public snapshot.
+
+Run the offline evidence checks from the repository root with Python 3.10 or later.
+
+```sh
+python -B -m unittest discover -s tests -v
+```
+
+These checks read saved files and do not launch the assessed application.
+
 ## Flow
 
 ```mermaid
@@ -41,8 +53,8 @@ Read the summary and flow, then choose a JSON matrix above. Expand **Technical d
 2. Open [SSE](matrices/SSE.json), row `FM-ERROR`, for the base/head comparison; then [AUTH](matrices/AUTH.json) for access controls. `invariant` is the required rule, `oracle` the measurement, and `observed` the result.
 3. Follow `evidence[].url`; a `pointer`, when present, selects a nested JSON entry. Read `status` with `limits`: fix verification applies to the stated scenario and commits.
 
-[Evidence archive: detailed report, tests, logs and source pins](https://github.com/Keedz1Off/fastmcp-auth-state-sse-case-study/tree/291534dd73ebc992db23b9e1834dc9ed151c3246) are preserved in the pinned evidence snapshot. Matrix links open the exact supporting records.
+[Evidence archive: detailed report and recorded results](https://github.com/Keedz1Off/fastmcp-auth-state-sse-case-study/tree/291534dd73ebc992db23b9e1834dc9ed151c3246) are preserved in the pinned evidence snapshot. Matrix links open the exact supporting records.
 
-FastMCP 4359485; selected MCP SDK environments and PR #3278 base/head. Independent, AI-assisted work. Documentation reorganisation only; no new target tests. [File inventory](package-manifest.json).
+FastMCP 4359485; selected MCP SDK environments and PR #3278 base/head. Independent, AI-assisted work. [File inventory](package-manifest.json).
 
 </details>
